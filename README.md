@@ -1,24 +1,21 @@
 # SilkShooter
 
-A simple project repository.
+A charming, wave-based survival shooter in Godot featuring a cute spider girl protagonist.
 
-## Description
+Reimagining of the classic Atari Black Widow with modern mechanics and adorable first, spider second energy.
 
-This is the SilkShooter project. More details coming soon!
+## Current Status
 
-## Getting Started
+Early development. Core player movement and independent aiming system in progress.
 
-- Clone the repository
-- Follow setup instructions (to be added)
+## Project Structure
 
-## Features
+See the folders for organization:
+- `scenes/` - All Godot scenes
+- `scripts/` - GDScript files
+- `sprites/` - Art assets
+- `audio/` - Sound effects and music
+- `resources/` - Other assets
 
-- (List features here)
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details (to be added).
+## Key Documents
+- `PROJECT_NOTES.md` - Full design and development notes
