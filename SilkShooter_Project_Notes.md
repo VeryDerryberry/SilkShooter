@@ -78,23 +78,26 @@ This keeps art requirements low while still showing progression clearly.
 
 ## Enemy Design
 
-We are starting with **three core enemy types**:
+We are starting with **three core enemy types** that use strong complementary colors to the player's red/black palette for clear visual distinction.
 
-### 1. Beetle (Basic)
-- Simple enemy that walks straight toward the player
-- Can be palette-swapped for variants (different colors = slightly different stats)
+### 1. Bad Beetle (Basic Baddie)
+- **Color:** Purple / Violet (complementary to player's red)
+- **Behavior:** Simple enemy that slowly walks straight toward the player.
+- Basic fodder enemy. Easy to understand and deal with.
 
-### 2. Grasshopper
-- Jumps in predictable arcs
-- While in the air, it is immune to shots (forces timing)
+### 2. Grasshopper (Unnamed)
+- **Color:** Bright / Vibrant Green
+- **Behavior:** Actively tries to reach the player but frequently jumps in arcs. 
+- While in the air, it is immune to shots. This forces the player to **time their attacks** instead of just holding down fire.
 
-### 3. Centipede (The Star)
-- Does **not** chase the player
-- Actively seeks out and eats experience orbs on the ground to grow longer
-- Acts as a **moving barrier** that blocks the player’s shots
-- Can trap groups of Beetles on the other side, creating dangerous build-ups
-- Once all other enemies in the wave are dead, it transforms into a **boss** that can finally be damaged
-- The longer the player takes to clear a wave, the bigger/stronger the Centipede boss becomes
+### 3. Centipede (The Tension Creator → Wave Boss)
+- **Color:** Yellow / Orange
+- **Behavior:** Travels in a **sine-wave pattern** across the screen. Does **not** attack the player at first.
+- Actively seeks out and **eats experience orbs / power-ups** on the ground to grow longer.
+- Acts as a **moving barrier** that blocks both the player’s shots and enemy movement. It can trap groups of Beetles on the other side, creating dangerous build-ups.
+- The longer the player takes to clear the other enemies in a wave, the bigger the Centipede grows (up to roughly **one-third of the screen**).
+- Once all other enemies in the wave are defeated, the Centipede goes through a **metamorphosis** and becomes the wave boss that now actively hunts the player.
+- This creates natural tension: leave it alone too long and you get a much harder boss fight.
 
 **Future Enemy Ideas** (to be added later):
 - Flying enemy
