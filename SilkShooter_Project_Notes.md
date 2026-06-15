@@ -105,19 +105,43 @@ We are starting with **three core enemy types** that use strong complementary co
 - Splitter enemy
 - Fast swarm enemy
 
-## Wave Progression (Working Table)
+## Arena & Setting Design (Updated June 2026)
 
-Early game should feel friendly and approachable (good for kids too).
+### Arena Size
+- The play area is **larger than the visible screen** (approximately 30-40% bigger).
+- Camera follows the player with a soft "dead zone" in the center. The camera only moves when Silk reaches the edge of the invisible movement box.
+- This prevents the player from camping in the middle and makes the game feel more dynamic.
 
-| Wave Range | Total Enemies | Notes / Composition                  | Upgrade After? |
-|------------|---------------|--------------------------------------|----------------|
-| 1–3      | Very Low      | Mostly Beetles, very slow            | No             |
-| 4–6      | Low           | Beetles + first Grasshoppers         | Yes            |
-| 7–9      | Medium        | Mix of Beetles + Grasshoppers        | Yes            |
-| 10–12    | Medium-High   | Introduce Centipede + more enemies   | Yes            |
-| 13+       | High          | Heavy pressure, Centipede grows fast | Yes            |
+### Setting
+- The game takes place **underneath a little girl’s bed**.
+- The main play area stays relatively open and clean.
+- Personality and visual storytelling come from the **borders and background** (bed frame, boxes, books, toys, etc.).
+- Every 5 waves, the arena borders change to show new clutter and objects (shoes, books, dinosaur toys, half-eaten suckers, etc.). This visually shows progression without cluttering the playable space.
 
-*This is a starting point. We will tune heavily during playtesting.*
+### Centipede Rules (Revised)
+- There is a **global maximum "Centipede Units"** allowed on screen at once (example: 40–60 total segments depending on stage).
+- Each segment counts as 1 unit.
+- This allows either one very long centipede or many smaller ones, but prevents the screen from becoming overwhelmed with centipedes.
+- **Peaceful state (default color):** Cannot be hurt, slowly grows by eating power-ups/orbs.
+- **Aggressive state (turns Red):** Becomes vulnerable and starts chasing the player. This happens when all other bugs are cleared, or in very late/hard waves even while other enemies are present.
+- Red is intentionally the same accent color as Silk to create visual connection.
+
+## Wave Progression & Enemy Introduction
+
+### Enemy Rollout Order
+- **Wave 1:** Basic Crawler (Purple Beetle)
+- **Wave 4:** First Centipede appears
+- **Wave 6:** Grasshopper introduced (jumper that leaps over shots)
+- **Wave 8:** Fly introduced (can fly over other enemies)
+- **Wave 11:** Beetle (tank / high health wall)
+- **Wave 13:** Spawner Bug (larger bug that creates smaller bugs)
+
+### General Wave Philosophy
+- Every 5 waves = 1 Stage
+- Arena border changes after every stage (new visual theme + clutter)
+- The game gradually becomes more intense rather than having sudden difficulty spikes.
+- A skilled player should be able to survive 25–40+ minutes before getting overwhelmed.
+- Clear fail state exists: Silk gets swarmed and overwhelmed (cute death animation with legs sticking out of a bug pile).
 
 ## Visual Clarity & Art Direction
 
