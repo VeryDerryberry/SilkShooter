@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bsibee5172cj5"]
+
+[ext_resource type="Script" uid="uid://b0juebtymvmju" path="res://projectile.gd" id="1_e7peq"]
+[ext_resource type="Texture2D" uid="uid://cs14jqy82bcdp" path="res://WhiteArrow.png" id="1_t7eop"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e7peq"]
+radius = 14.0
+height = 32.0
+
+[node name="Projectile" type="CharacterBody2D" unique_id=670607391]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_e7peq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1402465]
+texture = ExtResource("1_t7eop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1646728425]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_e7peq")

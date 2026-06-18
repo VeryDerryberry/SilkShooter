@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://blpvecqc85t0q"]
+
+[ext_resource type="Script" uid="uid://c2848j813082u" path="res://player.gd" id="1_r0du0"]
+[ext_resource type="Texture2D" uid="uid://cjrh6gtxxbtwq" path="res://player/BlueArrow.png" id="2_cm0pq"]
+[ext_resource type="Texture2D" uid="uid://fs5fl5cd8pfy" path="res://player/RedArrow.png" id="3_fos0i"]
+[ext_resource type="Texture2D" uid="uid://2rds67inwqg0" path="res://wood_0.jpg" id="4_cm0pq"]
+[ext_resource type="Script" uid="uid://b7jpnqlb36pd6" path="res://enemy_spawner.gd" id="5_3dxm6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cm0pq"]
+radius = 14.0
+height = 32.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_cm0pq"]
+a = Vector2(-588, -509)
+b = Vector2(595, -507)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_fos0i"]
+a = Vector2(-514, -663)
+b = Vector2(-512, 604)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_3dxm6"]
+a = Vector2(586, 515)
+b = Vector2(-585, 515)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lgr22"]
+a = Vector2(514, -601)
+b = Vector2(512, 740)
+
+[node name="Node2D" type="Node2D" unique_id=1886307772 groups=["level"]]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=678704016]
+position = Vector2(-5.9604645e-08, 2.9999998)
+texture = ExtResource("4_cm0pq")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=726802143 groups=["Player"]]
+script = ExtResource("1_r0du0")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1759866637]
+zoom = Vector2(2, 2)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Body" type="Sprite2D" parent="Player" unique_id=2145829215]
+texture = ExtResource("2_cm0pq")
+
+[node name="Abdomen" type="Sprite2D" parent="Player/Body" unique_id=2031267574]
+texture = ExtResource("3_fos0i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=227114375]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_cm0pq")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=65683270]
+
+[node name="Top Wall" type="CollisionShape2D" parent="Walls" unique_id=2072451061]
+shape = SubResource("SegmentShape2D_cm0pq")
+
+[node name="Left Wall" type="CollisionShape2D" parent="Walls" unique_id=337107942]
+shape = SubResource("SegmentShape2D_fos0i")
+
+[node name="Bottom Wall" type="CollisionShape2D" parent="Walls" unique_id=963926471]
+shape = SubResource("SegmentShape2D_3dxm6")
+
+[node name="Right Wall" type="CollisionShape2D" parent="Walls" unique_id=352568932]
+shape = SubResource("SegmentShape2D_lgr22")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=2119413433]
+position = Vector2(0, 1)
+script = ExtResource("5_3dxm6")
