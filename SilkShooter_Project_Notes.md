@@ -162,3 +162,52 @@ We are starting with **three core enemy types** that use strong complementary co
 6. Placeholder sprite work
 
 **Document last updated:** June 2026
+
+---
+
+## Conversation Summary: Silk Shooter Design Discussion (June 17, 2026)
+
+**Context:** Discussion about modernizing the 1982 Atari game *Black Widow* into a mobile roguelite wave-survival shooter called *Silk Shooter*.
+
+### Key Design Decisions
+
+**Arena / Room Progression (5 Rooms)**
+- Room 1: Little Girl’s Bed (cute hearts, stuffed animals)
+- Room 2: Little Boy’s Bed (dinosaurs, toys, LEGO)
+- Room 3: Under the Couch (dusty, with chaotic hamster running around as a moving hazard)
+- Room 4: The Closet (dark, spooky, old Halloween costumes)
+- Room 5: Circus Tent (bright colors, circus props, oom-pah-pah music vibe)
+
+Each new room provides a slight difficulty breather while overall difficulty continues to ramp up across the run.
+
+**Enemy Design**
+- Mostly insect-based enemies to stay true to the original *Black Widow* fantasy.
+- One special non-bug "oh shit" enemy per room (e.g., possessed LOL doll in girl’s room, creepy wind-up clown in circus room). These can act as rare, dangerous encounters or mini-bosses.
+- Hat/Mask system: Most enemies have a cosmetic hat or mask. First hit knocks it off (visual feedback). One enemy type becomes aggressive (faster/more dangerous) when its hat/mask is knocked off.
+
+**Environmental Hazard: The Cat**
+- Random cat paw swipe hazard with cooldown.
+- Clear visual warning (cat paw shadow) showing the direction of the swipe.
+- Damages both the player and enemies caught in the swipe.
+- Rewards players who pay attention to positioning and the warning.
+
+**Upgrade System Philosophy**
+- **Temporary Power-ups** (during a run): Fire rate, movement speed, magnet collection, screen clears, etc. These give the player something active to do besides camping in the center.
+- **Permanent Upgrades** (bought in the spider’s hub room between runs using points): Should **not** be small incremental stat bonuses (e.g., +8% fire rate). Small stat stacking leads to "vanilla" characters where everyone ends up with a slightly stronger version of the same spider.
+
+**Recommended Approach for Permanent Upgrades:**
+Use meaningful choice upgrade trees instead:
+- **Aggressive Tree** (damage, poison, crits, piercing, etc.)
+- **Defensive Tree** (shields, healing, knockback, etc.)
+- **Utility Tree** (magnet strength, web abilities, baby spiders, dash, etc.)
+
+Each upgrade should feel like a big, noticeable ability rather than tiny percentage increases. This creates player identity and different playstyles across runs.
+
+**Wave & Difficulty Philosophy**
+- Progressive difficulty with no hard "win" condition — the goal is to survive as long as possible (high score / wave count).
+- Rooms provide natural breathing room in difficulty.
+- After ~100 waves, difficulty continues to scale harder rather than ending.
+- Strong emphasis on "you can’t win, just see how far you can get" — classic arcade survival feel updated for modern mobile.
+
+**Overall Tone Goal**
+Keep the game charming, cute, and chaotic while modernizing the core loop for today’s players (auto-collect orbs, meaningful power-ups, clear visual feedback, and satisfying juice).
