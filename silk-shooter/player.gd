@@ -34,8 +34,13 @@ func _physics_process(delta: float) -> void:
 		body.rotation = last_move_direction.angle()
 	move_and_slide()
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			shoot()
+
 func _process(delta: float) -> void:
-	# Update abdomen every frame for responsive aiming
+	# Update abdomen every frame for responsive aiming (while LMB held)
 	var is_firing = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	update_abdomen(is_firing)
 
@@ -59,7 +64,7 @@ func update_abdomen(is_firing: bool) -> void:
 	rel_rad = fmod(rel_rad + PI, TAU) - PI
 	var rel_deg = rad_to_deg(rel_rad)
 
-	# For angles > 180° (or negative side), use flip_h and map to 0-180 range
+	# For angles > 180° (or negative side), use flip_h and map to 0-180 range from sprite sheet
 	var use_flip = rel_deg < 0
 	var target_abs = abs(rel_deg)
 
