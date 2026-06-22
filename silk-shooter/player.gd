@@ -7,20 +7,14 @@ extends CharacterBody2D
 
 var last_move_direction: Vector2 = Vector2.DOWN  # Default initial facing (adjust as needed)
 
-# Abdomen angle textures (0° to 180° in 22.5° steps). Index 0 = 0°, Index 8 = 180°
-var abdomen_angle_textures: Array[String] = [
-	"res://player/RedArrow.png",      # 0° (forward relative?)
-	"res://player/RedArrow22_5.png",  # 22.5°
-	"res://player/RedArrow45.png",    # 45°
-	"res://player/RedArrow67_5.png",  # 67.5°
-	"res://player/RedArrow90.png",    # 90°
-	"res://player/RedArrow112_5.png", # 112.5°
-	"res://player/RedArrow135.png",   # 135°
-	"res://player/RedArrow157_5.png", # 157.5°
-	"res://player/RedArrow180.png"    # 180° (back, default when not firing)
-]
+# Sprite sheet setup: 9 frames (0° index 0 to 180° index 8)
+@onready var abdomen_sheet: Texture2D = load("res://player/abdomen_spritesheet.png")
 
 func _ready() -> void:
+	# Setup abdomen sprite sheet
+	abdomen.texture = abdomen_sheet
+	abdomen.hframes = 9
+	abdomen.vframes = 1
 	# Initial body facing
 	body.rotation = last_move_direction.angle()
 	# Start with abdomen pointing 180° back
@@ -48,9 +42,8 @@ func update_abdomen(is_firing: bool) -> void:
 	if abdomen == null:
 		return
 	if not is_firing:
-		# Not firing: abdomen points 180° opposite to body direction
-		# Uses the 180° sprite, no flip, local rotation 0 so pre-rotated art + body rot gives correct global back
-		abdomen.texture = load(abdomen_angle_textures[8])
+		# Not firing: abdomen points 180° opposite to body direction (frame 8)
+		abdomen.frame = 8
 		abdomen.flip_h = false
 		abdomen.rotation = 0.0
 		return
@@ -68,15 +61,15 @@ func update_abdomen(is_firing: bool) -> void:
 	var use_flip = rel_deg < 0
 	var target_abs = abs(rel_deg)
 
-	# Pick closest discrete angle from sprite sheet (0, 22.5, ..., 180)
+	# Pick closest discrete angle frame (0-8)
 	var index = round(target_abs / 22.5)
 	index = clamp(index, 0, 8)
 	var picked_angle = index * 22.5
 
-	# Apply the correct sprite from sheet (or individual textures for now)
-	abdomen.texture = load(abdomen_angle_textures[index])
+	# Apply the correct frame from sprite sheet
+	abdomen.frame = index
 	abdomen.flip_h = use_flip
-	abdomen.rotation = 0.0  # Keep 0; the texture art + relative body handles the swivel visually
+	abdomen.rotation = 0.0  # Keep 0; frames are pre-oriented relative to body forward
 
 func shoot() -> void:
 	var projectile = load("res://Projectile.tscn").instantiate()
