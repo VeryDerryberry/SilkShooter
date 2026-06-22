@@ -1,28 +1,28 @@
 extends CharacterBody2D
 
-@export var speed = 600
+@export var speed: float = 320.0
 
-var direction = Vector2.ZERO
+var direction := Vector2.ZERO
 
-func _ready():
+
+func _ready() -> void:
 	rotation = direction.angle()
-	$CollisionShape2D.disabled = false
-	connect("body_entered", _on_body_entered)
-	
-	
-func _physics_process(delta):
-	if direction != Vector2.ZERO:
-		velocity = direction * speed
-		move_and_slide()
-		for i in get_slide_collision_count():
-			var collision = get_slide_collision(i)
-			var body = collision.get_collider()
-			if body and body.is_in_group("enemy"):
-				body.queue_free()
-				queue_free()
-				return
 
-func _on_body_entered(body):
-	if body.is_in_group("enemy"):
-		body.queue_free()
-		queue_free()
+
+func _physics_process(_delta: float) -> void:
+	if direction == Vector2.ZERO:
+		return
+
+	velocity = direction * speed
+	move_and_slide()
+
+	for i in get_slide_collision_count():
+		var collider = get_slide_collision(i).get_collider()
+		if collider != null and collider.is_in_group("enemy"):
+			_destroy_with(collider)
+			return
+
+
+func _destroy_with(enemy: Node) -> void:
+	enemy.queue_free()
+	queue_free()

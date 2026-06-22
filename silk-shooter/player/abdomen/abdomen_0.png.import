@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pocmsqquwqlu"
-path="res://.godot/imported/RedArrow45.png-1071dfce4b059dbfbd00a65613177455.ctex"
+uid="uid://cgxd6uw4ailkq"
+path="res://.godot/imported/abdomen_0.png-77f0d47a2636ef7a0a865314c892cf9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/RedArrow45.png"
-dest_files=["res://.godot/imported/RedArrow45.png-1071dfce4b059dbfbd00a65613177455.ctex"]
+source_file="res://player/abdomen/abdomen_0.png"
+dest_files=["res://.godot/imported/abdomen_0.png-77f0d47a2636ef7a0a865314c892cf9e.ctex"]
 
 [params]
 

@@ -1,24 +1,25 @@
 extends Node2D
 
-var current_enemies = 0
-@export var starting_enemies = 3
+const ENEMY_SCENE := preload("res://enemy.tscn")
 
-func _ready():
-	for i in starting_enemies:
-		spawn_enemy()
+@export var starting_enemies: int = 30
+@export var spawn_half_extent: float = 475.0
 
-func spawn_enemy():
-	var enemy = load("res://enemy.tscn").instantiate()
+
+func _ready() -> void:
+	for _i in starting_enemies:
+		_spawn_enemy()
+
+
+func _spawn_enemy() -> void:
+	var enemy := ENEMY_SCENE.instantiate()
 	enemy.global_position = Vector2(
-		randf_range(-475, 475),
-		randf_range(-475, 475)
+		randf_range(-spawn_half_extent, spawn_half_extent),
+		randf_range(-spawn_half_extent, spawn_half_extent)
 	)
 	add_child(enemy)
-	current_enemies += 1
-	enemy.tree_exited.connect(_on_enemy_died)
+	enemy.tree_exited.connect(_on_enemy_died, CONNECT_ONE_SHOT)
 
-func _on_enemy_died():
-	print("Enemies alive: ", get_tree().get_nodes_in_group("enemy").size())
-	current_enemies -= 1
-	spawn_enemy()     # Replace the one that died
-	spawn_enemy()     # Add one extra
+
+func _on_enemy_died() -> void:
+	_spawn_enemy()
