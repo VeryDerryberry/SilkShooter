@@ -7,14 +7,14 @@ extends CharacterBody2D
 
 var last_move_direction: Vector2 = Vector2.DOWN  # Default initial facing (adjust as needed)
 
-# Sprite sheet setup: 9 frames (0° index 0 to 180° index 8)
+# Sprite sheet setup: 4x4 grid (use first 9 frames: 0° to 180°)
 @onready var abdomen_sheet: Texture2D = load("res://player/abdomen_spritesheet.png")
 
 func _ready() -> void:
-	# Setup abdomen sprite sheet
+	# Setup abdomen sprite sheet (4x4 grid)
 	abdomen.texture = abdomen_sheet
-	abdomen.hframes = 9
-	abdomen.vframes = 1
+	abdomen.hframes = 4
+	abdomen.vframes = 4
 	# Initial body facing
 	body.rotation = last_move_direction.angle()
 	# Start with abdomen pointing 180° back
@@ -61,7 +61,7 @@ func update_abdomen(is_firing: bool) -> void:
 	var use_flip = rel_deg < 0
 	var target_abs = abs(rel_deg)
 
-	# Pick closest discrete angle frame (0-8)
+	# Pick closest discrete angle frame (0-8 for the first 9 frames)
 	var index = round(target_abs / 22.5)
 	index = clamp(index, 0, 8)
 	var picked_angle = index * 22.5
