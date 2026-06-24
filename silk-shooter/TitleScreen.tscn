@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://n0vuhkduq2re"]
+
+[ext_resource type="Texture2D" uid="uid://d3jfkgwvy4lg1" path="res://grok-image-c038c43c-45e3-44ed-8419-011044283ccb.jpg" id="1_fnlyl"]
+[ext_resource type="Script" uid="uid://dy306wysso8kg" path="res://title_screen.gd" id="1_pkhjh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkhjh"]
+size = Vector2(310.81964, 207.1818)
+
+[node name="Node2D" type="Node2D" unique_id=1388192121]
+script = ExtResource("1_pkhjh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=564165072]
+texture = ExtResource("1_fnlyl")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=412359591]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=425728186]
+position = Vector2(-295, -10)
+rotation = -0.28797933
+shape = SubResource("RectangleShape2D_pkhjh")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=882436011]
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

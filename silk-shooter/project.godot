@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Silk Shooter"
-run/main_scene="uid://blpvecqc85t0q"
+run/main_scene="uid://n0vuhkduq2re"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 

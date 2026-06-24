@@ -20,6 +20,5 @@ func _spawn_enemy() -> void:
 	add_child(enemy)
 	enemy.tree_exited.connect(_on_enemy_died, CONNECT_ONE_SHOT)
 
-
 func _on_enemy_died() -> void:
 	_spawn_enemy()

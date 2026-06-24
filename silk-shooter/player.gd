@@ -8,11 +8,13 @@ const ABDOMEN_IDLE_FRAME := 8
 const ABDOMEN_DEGREES_PER_FRAME := 22.5
 
 @export var speed: float = 180.0
+@export var abdomen_lerp_speed: float = 12.0
 
 @onready var body: Sprite2D = $Body
 @onready var abdomen: Sprite2D = $Body/Abdomen
 
 var last_move_direction := Vector2.DOWN
+var _abdomen_aim_deg: float = 180.0
 
 
 func _ready() -> void:
@@ -39,11 +41,16 @@ func _input(event: InputEvent) -> void:
 		_shoot()
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		_aim_abdomen()
+		_abdomen_aim_deg = _aim_degrees_relative_to_body()
+		_apply_abdomen_pose(_abdomen_aim_deg)
 	else:
-		_reset_abdomen()
+		var t := clampf(abdomen_lerp_speed * delta, 0.0, 1.0)
+		_abdomen_aim_deg = rad_to_deg(
+			lerp_angle(deg_to_rad(_abdomen_aim_deg), deg_to_rad(180.0), t)
+		)
+		_apply_abdomen_pose(_abdomen_aim_deg)
 
 
 func _setup_abdomen_spritesheet() -> void:
@@ -53,15 +60,13 @@ func _setup_abdomen_spritesheet() -> void:
 
 
 func _reset_abdomen() -> void:
-	abdomen.frame = ABDOMEN_IDLE_FRAME
-	abdomen.flip_h = false
-	abdomen.flip_v = false
-	abdomen.rotation = 0.0
+	_abdomen_aim_deg = 180.0
+	_apply_abdomen_pose(_abdomen_aim_deg)
 
 
-func _aim_abdomen() -> void:
+func _apply_abdomen_pose(aim_deg: float) -> void:
 	# Godot angles increase clockwise; the sheet is drawn counter-clockwise (0° → up → 180°).
-	var sheet_deg := -_aim_degrees_relative_to_body()
+	var sheet_deg := -aim_deg
 	abdomen.flip_v = sheet_deg < 0.0
 	if abdomen.flip_v:
 		sheet_deg = -sheet_deg
